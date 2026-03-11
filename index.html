@@ -333,12 +333,17 @@ Installments Calculators (Monthly, Weekly, Daily)
 </div>
 
 <script>
+
+function roundToHundred(num){
+  return Math.round(num / 100) * 100;
+}
+
 function calcMonthly() {
   let cost = Number(document.getElementById("mcost").value);
   let markup = Number(document.getElementById("mmarkup").value);
   let months = Number(document.getElementById("mmonths").value);
   let total = cost + (cost * markup / 100);
-  let pay = total / months;
+  let pay = roundToHundred(total / months);
 
   document.getElementById("mtotal").innerText = "Rs " + total.toFixed(0);
   document.getElementById("mmonthly").innerText = pay.toFixed(0);
@@ -349,7 +354,7 @@ function calcWeekly() {
   let markup = Number(document.getElementById("wmarkup").value);
   let weeks = Number(document.getElementById("wweeks").value);
   let total = cost + (cost * markup / 100);
-  let pay = total / weeks;
+  let pay = roundToHundred(total / weeks);
 
   document.getElementById("wtotal").innerText = "Rs " + total.toFixed(0);
   document.getElementById("wweekly").innerText = pay.toFixed(0);
@@ -360,7 +365,7 @@ function calcDaily() {
   let markup = Number(document.getElementById("dmarkup").value);
   let days = Number(document.getElementById("ddays").value);
   let total = cost + (cost * markup / 100);
-  let pay = total / days;
+  let pay = roundToHundred(total / days);
 
   document.getElementById("dtotal").innerText = "Rs " + total.toFixed(0);
   document.getElementById("ddaily").innerText = pay.toFixed(0);
