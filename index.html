@@ -1,149 +1,307 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Monthly Installment Calculator</title>
+<title>Installment Calculator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
-body{
-font-family: Arial;
-background:#f2f2f2;
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-.container{
-width:350px;
-margin:40px auto;
-border:1px solid #ccc;
-background:white;
+.logo {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.logo{
-text-align:center;
-padding:10px;
+.logo img {
+  max-width: 180px;
+  height: auto;
 }
 
-.logo img{
-max-width:180px;
-height:auto;
+.wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-.header{
-background:#1f5fbf;
-color:white;
-padding:10px;
-font-size:20px;
-text-align:center;
+.container {
+  width: 340px;
+  border: 1px solid #ccc;
+  background: white;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.row{
-display:flex;
-justify-content:space-between;
-padding:8px 12px;
-border-bottom:1px solid #ddd;
+.header {
+  background: #1f5fbf;
+  color: white;
+  padding: 10px;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 4px 4px 0 0;
 }
 
-input, select{
-width:120px;
-padding:5px;
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid #ddd;
+  align-items: center;
 }
 
-.result{
-font-weight:bold;
-font-size:20px;
-padding:10px;
-display:flex;
-justify-content:space-between;
+input, select {
+  width: 120px;
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
-.total{
-background:#f5f5f5;
+.result {
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0 0 4px 4px;
 }
 
-.monthly{
-background:#7a7ad6;
-color:white;
+.total {
+  background: #f5f5f5;
 }
+
+.final {
+  background: #7a7ad6;
+  color: white;
+}
+
+@media (max-width: 1150px) {
+  .wrapper {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1080px) {
+  .container {
+    width: 300px;
+  }
+}
+
+@media (max-width: 720px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 350px;
+  }
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="container">
-
 <div class="logo">
-<img src="logo.png" alt="Company Logo">
+  <img src="logo.png" alt="Company Logo">
 </div>
 
-<div class="header">
-Monthly Installment Calculator
-</div>
+<div class="wrapper">
 
-<div class="row">
-<label>Product Cost</label>
-<input type="number" id="cost" value="78000">
-</div>
+  <!-- MONTHLY -->
+  <div class="container">
 
-<div class="row">
-<label>Markup (%)</label>
-<select id="markup">
-<option value="10">10</option>
-<option value="15">15</option>
-<option value="20">20</option>
-<option value="25" selected>25</option>
-<option value="30">30</option>
-<option value="35">35</option>
-<option value="40">40</option>
-<option value="41">41</option>
-<option value="42">42</option>
-<option value="43">43</option>
-<option value="44">44</option>
-<option value="45">45</option>
-</select>
-</div>
+    <div class="header">
+      Monthly Installment Calculator
+    </div>
 
-<div class="row">
-<label>Monthly Period</label>
-<select id="months">
-<option>3</option>
-<option selected>6</option>
-<option>9</option>
-<option>10</option>
-<option>12</option>
-<option>15</option>
-</select>
-</div>
+    <div class="row">
+      <label for="mcost">Product Cost</label>
+      <input type="number" id="mcost" value="78000" min="0" />
+    </div>
 
-<div class="result total">
-<span>Total Sale Price</span>
-<span id="total">0</span>
-</div>
+    <div class="row">
+      <label for="mmarkup">Markup (%)</label>
+      <select id="mmarkup">
+        <option>10</option>
+        <option>15</option>
+        <option>20</option>
+        <option selected>25</option>
+        <option>30</option>
+      </select>
+    </div>
 
-<div class="result monthly">
-<span>Monthly Installment</span>
-<span id="monthly">0</span>
-</div>
+    <div class="row">
+      <label for="mmonths">Monthly Period</label>
+      <select id="mmonths">
+        <option>3</option>
+        <option selected>6</option>
+        <option>9</option>
+        <option>12</option>
+      </select>
+    </div>
+
+    <div class="result total">
+      <span>Total Sale Price</span>
+      <span id="mtotal">0</span>
+    </div>
+
+    <div class="result final">
+      <span>Monthly Installment</span>
+      <span id="mmonthly">0</span>
+    </div>
+
+  </div>
+
+  <!-- WEEKLY -->
+  <div class="container">
+
+    <div class="header">
+      Weekly Installment Calculator
+    </div>
+
+    <div class="row">
+      <label for="wcost">Product Cost</label>
+      <input type="number" id="wcost" value="40000" min="0" />
+    </div>
+
+    <div class="row">
+      <label for="wmarkup">Markup (%)</label>
+      <select id="wmarkup">
+        <option selected>10</option>
+        <option>15</option>
+        <option>20</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label for="wweeks">Weekly Period</label>
+      <select id="wweeks">
+        <option>4</option>
+        <option selected>6</option>
+        <option>8</option>
+        <option>10</option>
+      </select>
+    </div>
+
+    <div class="result total">
+      <span>Total Sale Price</span>
+      <span id="wtotal">0</span>
+    </div>
+
+    <div class="result final">
+      <span>Weekly Installment</span>
+      <span id="wweekly">0</span>
+    </div>
+
+  </div>
+
+  <!-- DAILY -->
+  <div class="container">
+
+    <div class="header">
+      Daily Installment Calculator
+    </div>
+
+    <div class="row">
+      <label for="dcost">Product Cost</label>
+      <input type="number" id="dcost" value="4200" min="0" />
+    </div>
+
+    <div class="row">
+      <label for="dmarkup">Markup (%)</label>
+      <select id="dmarkup">
+        <option selected>10</option>
+        <option>15</option>
+        <option>20</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label for="ddays">Daily Period</label>
+      <select id="ddays">
+        <option>10</option>
+        <option selected>18</option>
+        <option>24</option>
+        <option>30</option>
+      </select>
+    </div>
+
+    <div class="result total">
+      <span>Total Sale Price</span>
+      <span id="dtotal">0</span>
+    </div>
+
+    <div class="result final">
+      <span>Daily Installment</span>
+      <span id="ddaily">0</span>
+    </div>
+
+  </div>
 
 </div>
 
 <script>
+function calcMonthly() {
+  let cost = Number(document.getElementById("mcost").value);
+  let markup = Number(document.getElementById("mmarkup").value);
+  let months = Number(document.getElementById("mmonths").value);
+  let total = cost + (cost * markup / 100);
+  let pay = total / months;
 
-function calculate(){
-
-let cost = Number(document.getElementById("cost").value);
-let markup = Number(document.getElementById("markup").value);
-let months = Number(document.getElementById("months").value);
-
-let total = cost + (cost * markup / 100);
-let monthly = total / months;
-
-document.getElementById("total").innerText = "Rs " + total.toFixed(0);
-document.getElementById("monthly").innerText = monthly.toFixed(0);
-
+  document.getElementById("mtotal").innerText = "Rs " + total.toFixed(0);
+  document.getElementById("mmonthly").innerText = pay.toFixed(0);
 }
 
-document.querySelectorAll("input,select").forEach(el=>{
-el.addEventListener("change",calculate);
+function calcWeekly() {
+  let cost = Number(document.getElementById("wcost").value);
+  let markup = Number(document.getElementById("wmarkup").value);
+  let weeks = Number(document.getElementById("wweeks").value);
+  let total = cost + (cost * markup / 100);
+  let pay = total / weeks;
+
+  document.getElementById("wtotal").innerText = "Rs " + total.toFixed(0);
+  document.getElementById("wweekly").innerText = pay.toFixed(0);
+}
+
+function calcDaily() {
+  let cost = Number(document.getElementById("dcost").value);
+  let markup = Number(document.getElementById("dmarkup").value);
+  let days = Number(document.getElementById("ddays").value);
+  let total = cost + (cost * markup / 100);
+  let pay = total / days;
+
+  document.getElementById("dtotal").innerText = "Rs " + total.toFixed(0);
+  document.getElementById("ddaily").innerText = pay.toFixed(0);
+}
+
+document.querySelectorAll("input,select").forEach(el => {
+  el.addEventListener("change", () => {
+    calcMonthly();
+    calcWeekly();
+    calcDaily();
+  });
 });
 
-calculate();
+calcMonthly();
+calcWeekly();
+calcDaily();
 
 </script>
 
