@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Monthly Installment Calculator</title>
+<style>
+body{
+font-family: Arial;
+background:#f2f2f2;
+}
+
+.container{
+width:350px;
+margin:40px auto;
+border:1px solid #ccc;
+background:white;
+}
+
+.header{
+background:#1f5fbf;
+color:white;
+padding:10px;
+font-size:20px;
+text-align:center;
+}
+
+.row{
+display:flex;
+justify-content:space-between;
+padding:8px 12px;
+border-bottom:1px solid #ddd;
+}
+
+input, select{
+width:120px;
+padding:5px;
+}
+
+.result{
+font-weight:bold;
+font-size:20px;
+padding:10px;
+display:flex;
+justify-content:space-between;
+}
+
+.total{
+background:#f5f5f5;
+}
+
+.monthly{
+background:#7a7ad6;
+color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+Monthly Installment Calculator
+</div>
+
+<div class="row">
+<label>Product Cost</label>
+<input type="number" id="cost" value="78000">
+</div>
+
+<div class="row">
+<label>Markup (%)</label>
+<select id="markup">
+<option value="10">10</option>
+<option value="15">15</option>
+<option value="20">20</option>
+<option value="25" selected>25</option>
+<option value="30">30</option>
+</select>
+</div>
+
+<div class="row">
+<label>Monthly Period</label>
+<select id="months">
+<option>3</option>
+<option selected>6</option>
+<option>9</option>
+<option>12</option>
+</select>
+</div>
+
+<div class="result total">
+<span>Total Sale Price</span>
+<span id="total">0</span>
+</div>
+
+<div class="result monthly">
+<span>Monthly Installment</span>
+<span id="monthly">0</span>
+</div>
+
+</div>
+
+<script>
+
+function calculate(){
+
+let cost = Number(document.getElementById("cost").value);
+let markup = Number(document.getElementById("markup").value);
+let months = Number(document.getElementById("months").value);
+
+let total = cost + (cost * markup / 100);
+let monthly = total / months;
+
+document.getElementById("total").innerText = "Rs " + total.toFixed(0);
+document.getElementById("monthly").innerText = monthly.toFixed(0);
+
+}
+
+document.querySelectorAll("input,select").forEach(el=>{
+el.addEventListener("change",calculate);
+});
+
+calculate();
+
+</script>
+
+</body>
+</html>
